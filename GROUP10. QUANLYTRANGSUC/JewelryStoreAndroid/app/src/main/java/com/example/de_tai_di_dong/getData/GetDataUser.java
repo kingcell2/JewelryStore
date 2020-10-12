@@ -1,0 +1,54 @@
+package com.example.de_tai_di_dong.getData;
+
+import com.example.de_tai_di_dong.model.ResultLogin;
+import com.example.de_tai_di_dong.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Query;
+
+public interface GetDataUser {
+
+    @GET("login")
+    Call<ArrayList<ResultLogin>>getLogin(
+            @Query("username") String username,
+            @Query("password") String pass
+    );
+
+    @GET("userInfoById")
+    Call<ArrayList<User>> getInfoUser(
+            @Query("userID") int userID
+    );
+
+    @GET("changePassword")
+    Call<ArrayList<ResultLogin>> getChangePass(
+            @Query("userID") int userID,
+            @Query("oldPass") String oldPass,
+            @Query("newPass") String newPass
+    );
+
+    @POST("signup")
+    Call<ArrayList<ResultLogin>> postSingUp(
+            @Query("name") String name,
+            @Query("email") String email,
+            @Query("phone") String phone,
+            @Query("username") String username,
+            @Query("password") String password,
+            @Query("address") String address
+    );
+    @PUT("updateUser")
+    Call<ArrayList<ResultLogin>> putupdateUser(
+            @Query("userId") int userId,
+            @Query("name") String name,
+            @Query("email") String email,
+            @Query("phone") String phone,
+            @Query("address")String  address,
+            @Query("avatar") String avatar
+    );
+
+}
